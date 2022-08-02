@@ -35,4 +35,6 @@ public class UserService {
     }
 
     public Optional<User> findStudentById(@RequestParam Long id){return userRepository.findById(id);}
+
+    public Optional<User> findStudentByEmail(@RequestParam String email){ return userRepository.findUserByEmail(email);}
 }

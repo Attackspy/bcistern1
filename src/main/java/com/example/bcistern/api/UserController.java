@@ -31,4 +31,7 @@ public class UserController {
 
     @RequestMapping(value = "{id}", method = RequestMethod.GET)
     public String getStudent(@RequestBody Long id){return userService.findStudentById(id).toString();}
+
+    @RequestMapping(value = "find/{email}", method = RequestMethod.GET)
+    public String getStudentmail(@RequestBody String email){return userService.findStudentByEmail(email).toString();}
 }
