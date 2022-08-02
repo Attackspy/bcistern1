@@ -26,5 +26,9 @@ public class UserController {
         userService.addNewUser(user);
     }
 
+    @DeleteMapping
+    public void deleteUser(@RequestBody Long id) {userService.deleteUser(id);}
 
+    //@GetMapping
+    //public String getStudent(@RequestBody Long id){return userService.findStudentById(id).toString();}
 }

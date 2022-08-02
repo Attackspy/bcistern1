@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -25,7 +27,12 @@ public class UserService {
     }
 
     public void addNewUser(@RequestBody User user) {
-        System.out.println(user);
+        userRepository.save(user);
     }
 
+    public void deleteUser(@RequestParam Long id){
+        userRepository.deleteById(id);
+    }
+
+    public Optional<User> findStudentById(@RequestParam Long id){return userRepository.findById(id);}
 }
