@@ -28,7 +28,4 @@ public class UserService {
         System.out.println(user);
     }
 
-    public void deleteUser(Long userID) {
-        userRepository.deleteUserById(userID);
-    }
 }
