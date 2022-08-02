@@ -23,4 +23,10 @@ public class CourseController {
     public void registerNewCourse(@RequestBody Course course){
         courseService.addNewCourse(course);
     }
+
+    @DeleteMapping
+    public void deleteCourse(@RequestBody Long id) { courseService.deleteCourse(id);}
+
+    @RequestMapping(value = "activate/{id}", method = RequestMethod.PUT)
+    public void setCourseActive(@RequestBody Long id) { courseService.activateCourse(id);}
 }
