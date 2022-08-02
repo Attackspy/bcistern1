@@ -31,7 +31,7 @@ public class UserService {
     }
 
     public void deleteUser(@RequestParam Long id){
-        userRepository.deleteById(id);
+        userRepository.deleteUserById(id);
     }
 
     public Optional<User> findStudentById(@RequestParam Long id){return userRepository.findById(id);}
