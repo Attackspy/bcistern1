@@ -46,18 +46,19 @@ public class UserController {
         }
     }
 
-    @RequestMapping(value = "login", method = RequestMethod.PUT)
+    @RequestMapping(value = "login_old", method = RequestMethod.PUT)
     public String userLogin(@RequestBody String mail){
         Optional<User> user = userService.findStudentByEmail(mail);
         userService.userLogin(mail);
         return user.toString() + "login successful";
     }
 
-    @RequestMapping(value = "login_better", method = RequestMethod.GET)
+    @RequestMapping(value = "login", method = RequestMethod.PUT)
     public String fullLogin(@RequestBody String email, String password){
         Optional<User> user = userService.findStudentByEmail(email);
         if(user.isPresent()){
             if(user.get().getPassword().equals(password)){
+                userService.userLogin(email);
                 return "!!!!";
             }
             else {return "sifre hatali";}

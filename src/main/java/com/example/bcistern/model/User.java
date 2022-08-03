@@ -1,16 +1,13 @@
 package com.example.bcistern.model;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-@Getter
-@Setter
-@ToString
+@Data
+@NoArgsConstructor
 @Entity(name = "User")
 @Table
 public class User {
@@ -31,9 +28,6 @@ public class User {
     private double money;
 
     private LocalDateTime last_login;
-
-    public User() {
-    }
 
     public User(String name, String email, String password, double money) {
         this.name = name;

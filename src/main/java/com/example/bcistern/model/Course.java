@@ -1,17 +1,14 @@
 package com.example.bcistern.model;
 
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 
-@Getter
-@Setter
-@ToString
+@Data
 @Entity
 @Table
+@NoArgsConstructor
 public class Course {
     @Id
     @SequenceGenerator(
@@ -28,9 +25,6 @@ public class Course {
     private Long owner_id;
     private double price;
     private boolean is_active;
-
-    public Course() {
-    }
 
     public Course(Long id, String name, Long ownerId, double price, boolean isActive) {
         this.id = id;
