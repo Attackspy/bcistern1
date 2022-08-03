@@ -52,7 +52,7 @@ public class UserController {
         userService.userLogin(mail);
         return user.toString() + "login successful";
     }
-
+    /*
     @RequestMapping(value = "login", method = RequestMethod.PUT)
     public String fullLogin(@RequestBody String email, String password){
         Optional<User> user = userService.findStudentByEmail(email);
@@ -65,4 +65,5 @@ public class UserController {
         }
         else {return "eposta hatali";}
     }
+    */
 }
