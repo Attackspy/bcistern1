@@ -1,5 +1,6 @@
 package com.example.bcistern.api;
 
+import com.example.bcistern.model.Money;
 import com.example.bcistern.model.User;
 import com.example.bcistern.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +52,12 @@ public class UserController {
         Optional<User> user = userService.findStudentByEmail(mail);
         userService.userLogin(mail);
         return user.toString() + "login successful";
+    }
+
+    @RequestMapping(value = "money", method = RequestMethod.PUT)
+    public String userMoney(@RequestBody Money money){
+        userService.userDeposit(money);
+        return userService.findStudentById(money.getUserId()).get().getName() + " : " + String.valueOf(userService.findStudentById(money.getUserId()).get().getMoney());
     }
     /*
     @RequestMapping(value = "login", method = RequestMethod.PUT)

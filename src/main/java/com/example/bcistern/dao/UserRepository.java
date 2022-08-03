@@ -27,5 +27,7 @@ public interface UserRepository extends JpaRepository<User, Long>
     @Query("update User u set u.last_login = ?1 where u.email = ?2")
     void userLogin(LocalDateTime date, String email);
 
-
+    @Modifying
+    @Query("update User u set u.money = ?1 where u.id = ?2")
+    void changeMoney(double money, Long id);
 }

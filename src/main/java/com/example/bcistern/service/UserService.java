@@ -1,6 +1,7 @@
 package com.example.bcistern.service;
 
 import com.example.bcistern.dao.UserRepository;
+import com.example.bcistern.model.Money;
 import com.example.bcistern.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,5 +43,9 @@ public class UserService {
     public void userLogin(@RequestParam String email){
         LocalDateTime date = LocalDateTime.now();
         userRepository.userLogin(date, email);
+    }
+
+    public void userDeposit(@RequestBody Money money){
+        userRepository.changeMoney(userRepository.findById(money.getUserId()).get().getMoney() + money.getAmount(), money.getUserId());
     }
 }
