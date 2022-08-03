@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
+import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -15,13 +16,16 @@ import java.util.UUID;
 public interface UserRepository extends JpaRepository<User, Long>
 {
 
-    @Query("SELECT s from User s where s.email = ?1")
+    @Query("SELECT u from User u where u.email = ?1")
     Optional<User> findUserByEmail(String email);
 
-    @Query("SELECT s from User s where s.id = ?1")
-    Optional<User> findUserById(Long id);
+    @Modifying
+    @Query("delete from User u where u.id = ?1")
+    void deleteUserById(Long id);
 
     @Modifying
-    @Query("delete from User s where s.id = ?1")
-    void deleteUserById(Long id);
+    @Query("update User u set u.last_login = ?1 where u.email = ?2")
+    void userLogin(LocalDateTime date, String email);
+
+
 }

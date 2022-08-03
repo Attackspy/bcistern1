@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -37,4 +38,9 @@ public class UserService {
     public Optional<User> findStudentById(@RequestParam Long id){return userRepository.findById(id);}
 
     public Optional<User> findStudentByEmail(@RequestParam String email){ return userRepository.findUserByEmail(email);}
+
+    public void userLogin(@RequestParam String email){
+        LocalDateTime date = LocalDateTime.now();
+        userRepository.userLogin(date, email);
+    }
 }

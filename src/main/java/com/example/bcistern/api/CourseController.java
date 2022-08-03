@@ -1,10 +1,11 @@
 package com.example.bcistern.api;
 
 import com.example.bcistern.model.Course;
-import com.example.bcistern.model.User;
 import com.example.bcistern.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @RestController
 @RequestMapping("api/v1/course")
@@ -27,6 +28,17 @@ public class CourseController {
     @DeleteMapping
     public void deleteCourse(@RequestBody Long id) { courseService.deleteCourse(id);}
 
-    @RequestMapping(value = "activate/{id}", method = RequestMethod.PUT)
-    public void setCourseActive(@RequestBody Long id) { courseService.activateCourse(id);}
+    @RequestMapping(value = "activate", method = RequestMethod.PUT)
+    public String courseActivate(@RequestBody Long id) {
+        Optional<Course> course = courseService.findcourse(id);
+        courseService.activateCourse(id);
+        return course + "!!";
+    }
+
+    @RequestMapping(value = "deactivate", method = RequestMethod.PUT)
+    public String courseDeactivate(@RequestBody Long id) {
+        Optional<Course> course = courseService.findcourse(id);
+        courseService.deactivateCourse(id);
+        return course + "!!";
+    }
 }

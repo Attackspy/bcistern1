@@ -5,6 +5,8 @@ import com.example.bcistern.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @RequestMapping(path = "api/v1/user")
 @RestController
 public class UserController {
@@ -21,10 +23,8 @@ public class UserController {
         return userService.showStudent().toString();
     }
 
-    @PostMapping
-    public void registerNewUser(@RequestBody User user){
-        userService.addNewUser(user);
-    }
+    //@PostMapping
+    //public void registerNewUser(@RequestBody User user){userService.addNewUser(user);}
 
     @DeleteMapping
     public void deleteUser(@RequestBody Long id) {userService.deleteUser(id);}
@@ -34,4 +34,34 @@ public class UserController {
 
     @RequestMapping(value = "find/{email}", method = RequestMethod.GET)
     public String getStudentmail(@RequestBody String email){return userService.findStudentByEmail(email).toString();}
+
+    @PostMapping
+    public String userRegister(@RequestBody User user) {
+        if(!userService.findStudentByEmail(user.getEmail()).isPresent()){
+            userService.addNewUser(user);
+            return "successfully registered";
+        }
+        else{
+            return "email already exist!";
+        }
+    }
+
+    @RequestMapping(value = "login", method = RequestMethod.PUT)
+    public String userLogin(@RequestBody String mail){
+        Optional<User> user = userService.findStudentByEmail(mail);
+        userService.userLogin(mail);
+        return user.toString() + "login successful";
+    }
+
+    @RequestMapping(value = "login_better", method = RequestMethod.GET)
+    public String fullLogin(@RequestBody String email, String password){
+        Optional<User> user = userService.findStudentByEmail(email);
+        if(user.isPresent()){
+            if(user.get().getPassword().equals(password)){
+                return "!!!!";
+            }
+            else {return "sifre hatali";}
+        }
+        else {return "eposta hatali";}
+    }
 }

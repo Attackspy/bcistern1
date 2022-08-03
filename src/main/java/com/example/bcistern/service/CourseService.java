@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CourseService {
@@ -29,5 +30,13 @@ public class CourseService {
 
     public void deleteCourse(@RequestParam Long id) {courseRepository.deleteById(id);}
 
-    public void activateCourse(@RequestParam Long id) { courseRepository.activateCourse(id);}
+    public void activateCourse(@RequestParam Long id) {
+        courseRepository.activateCourse(id);
+    }
+
+    public Optional<Course> findcourse(@RequestParam Long id) {
+        return courseRepository.findById(id);
+    }
+
+    public void deactivateCourse(@RequestParam Long id) { courseRepository.deactivateCourse(id);}
 }

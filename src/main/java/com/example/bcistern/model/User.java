@@ -5,6 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Getter
@@ -28,6 +29,8 @@ public class User {
     private String email;
     private String password;
     private double money;
+
+    private LocalDateTime last_login;
 
     public User() {
     }

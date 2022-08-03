@@ -13,6 +13,10 @@ import javax.transaction.Transactional;
 public interface CourseRepository extends JpaRepository<Course, Long> {
 
     @Modifying
-    @Query("update Course set is_active = 0 where id = ?1")
+    @Query("update Course set is_active = 1 where id = ?1")
     void activateCourse(long id);
+
+    @Modifying
+    @Query("update Course c set c.is_active = 0 where c.id = ?1")
+    void deactivateCourse(long id);
 }
