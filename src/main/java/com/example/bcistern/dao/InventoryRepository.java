@@ -18,4 +18,7 @@ public interface InventoryRepository extends JpaRepository<Inventory, UUID> {
 
     @Query("SELECT i from Inventory i where i.user_id =?1 and i.course_id = ?2")
     Optional<Inventory> FindThatInv(Long uid, Long cid);
+
+    @Query("SELECT i from Inventory i where i.course_id =?1")
+    Optional<List<Inventory>> findInvByCourse(Long cid);
 }

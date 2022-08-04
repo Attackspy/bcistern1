@@ -34,4 +34,8 @@ public class InventoryService {
         return inventoryRepository.FindThatInv(uid, cid);
     }
 
+    public Optional<List<Inventory>> showCourseOwners(@RequestParam Long cid){
+        return inventoryRepository.findInvByCourse(cid);
+    }
+
 }

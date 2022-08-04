@@ -26,7 +26,7 @@ public class InventoryController {
         this.courseService = courseService;
     }
 
-    //@PostMapping
+    //@PostMappinp
     //public void giftCourse(@RequestBody Inventory inventory){
     //    inventoryService.getCourse(inventory);
     //}
@@ -59,5 +59,10 @@ public class InventoryController {
     @RequestMapping(value = "get", method = RequestMethod.GET)
     public String getUserInventory(@RequestBody Long uid){
         return String.valueOf(inventoryService.showUserInventory(uid));
+    }
+
+    @RequestMapping(value = "get_course_owners", method = RequestMethod.GET)
+    public String getCourseOwners(@RequestBody Long cid){
+        return String.valueOf(inventoryService.showCourseOwners(cid));
     }
 }
