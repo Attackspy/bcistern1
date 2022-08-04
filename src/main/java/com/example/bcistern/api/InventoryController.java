@@ -26,7 +26,7 @@ public class InventoryController {
         this.courseService = courseService;
     }
 
-    //@PostMappinp
+    //@PostMapping
     //public void giftCourse(@RequestBody Inventory inventory){
     //    inventoryService.getCourse(inventory);
     //}
@@ -44,16 +44,17 @@ public class InventoryController {
                     return "already exist";
                 }
                 else{
-                    Money money = new Money(course.get().getPrice() * -1, user.get().getId());
-                    userService.userDeposit(money);
-                    inventoryService.getCourse(inventory);
-                    return "successful, " + user.get().getName() + "'s current money: " + user.get().getMoney();
+                    if(course.get().is_active()){
+                        Money money = new Money(course.get().getPrice() * -1, user.get().getId());
+                        userService.userDeposit(money);
+                        inventoryService.getCourse(inventory);
+                        return "successful, " + user.get().getName() + "'s current money: " + user.get().getMoney();
+                    }
+                    else {return "course is not active";}
                 }
             }
         }
-        else {
-            return "course or user not found";
-        }
+        else {return "course or user not found";}
     }
 
     @RequestMapping(value = "get", method = RequestMethod.GET)
