@@ -1,8 +1,12 @@
 package com.example.bcistern.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -27,11 +31,16 @@ public class User {
 
     private LocalDateTime last_login;
 
-    public User(String name, String email, String password, double money) {
+    @OneToMany(mappedBy = "user")
+    List<Inventory> inv;
+
+    public User(Long id, String name, String email, String password, double money, LocalDateTime last_login) {
+        this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
         this.money = money;
+        this.inv = new ArrayList<>();
     }
 
     public User(Long id, String name, String email, String password, double money) {
@@ -40,5 +49,10 @@ public class User {
         this.email = email;
         this.password = password;
         this.money = money;
+        this.inv = inv;
+    }
+
+    public void addToList(Inventory inventory){
+        inv.add(inventory);
     }
 }

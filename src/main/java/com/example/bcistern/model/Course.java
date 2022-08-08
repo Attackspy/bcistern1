@@ -1,9 +1,12 @@
 package com.example.bcistern.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
+import java.util.Set;
 
 @Data
 @Entity
@@ -25,6 +28,9 @@ public class Course {
     private Long owner_id;
     private double price;
     private boolean is_active;
+
+    @OneToMany(mappedBy = "course")
+    Set<Inventory> inv;
 
     public Course(Long id, String name, Long ownerId, double price, boolean isActive) {
         this.id = id;

@@ -1,9 +1,6 @@
 package com.example.bcistern.api;
 
-import com.example.bcistern.model.Course;
-import com.example.bcistern.model.Inventory;
-import com.example.bcistern.model.Money;
-import com.example.bcistern.model.User;
+import com.example.bcistern.model.*;
 import com.example.bcistern.service.CourseService;
 import com.example.bcistern.service.InventoryService;
 import com.example.bcistern.service.UserService;
@@ -26,21 +23,16 @@ public class InventoryController {
         this.courseService = courseService;
     }
 
-    //@PostMapping
-    //public void giftCourse(@RequestBody Inventory inventory){
-    //    inventoryService.getCourse(inventory);
-    //}
-
     @PostMapping
     public String buyACourse(@RequestBody Inventory inventory){
-        Optional<User> user = userService.findStudentById(inventory.getUser_id());
-        Optional<Course> course = courseService.findcourse(inventory.getCourse_id());
+        Optional<User> user = userService.findStudentById(inventory.getUser().getId());
+        Optional<Course> course = courseService.findcourse(inventory.getCourse().getId());
         if(user.isPresent() && course.isPresent()){
             if(course.get().getPrice() > user.get().getMoney()){
                 return "not enough money, you need: " + String.valueOf(course.get().getPrice() - user.get().getMoney());
             }
             else{
-                if(inventoryService.findThatInv(inventory.getUser_id(),inventory.getCourse_id()).isPresent()){
+                if(inventoryService.findThatInv(inventory.getUser().getId(), inventory.getCourse().getId()).isPresent()){
                     return "already exist";
                 }
                 else{
