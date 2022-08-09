@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 public class Inventory {
 
     @EmbeddedId
-    InventoryKey id;
+    private InventoryKey id = new InventoryKey();
 
     @ManyToOne
     @MapsId("userId")

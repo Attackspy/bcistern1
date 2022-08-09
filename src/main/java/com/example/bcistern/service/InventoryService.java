@@ -21,20 +21,20 @@ public class InventoryService {
         this.inventoryRepository = inventoryRepository;
     }
 
-    public void getCourse(@RequestBody Inventory inventory){
+    public void getCourse(Inventory inventory){
         inventory.setDate_added(LocalDateTime.now());
         this.inventoryRepository.save(inventory);
     }
 
-    public Optional<List<Inventory>> showUserInventory(@RequestParam Long uid){
+    public Optional<List<Inventory>> showUserInventory(Long uid){
         return inventoryRepository.findInvByUser(uid);
     }
 
-    public Optional<Inventory> findThatInv(@RequestBody Long uid, Long cid){
+    public Optional<Inventory> findThatInv(Long uid, Long cid){
         return inventoryRepository.FindThatInv(uid, cid);
     }
 
-    public Optional<List<Inventory>> showCourseOwners(@RequestParam Long cid){
+    public Optional<List<Inventory>> showCourseOwners(Long cid){
         return inventoryRepository.findInvByCourse(cid);
     }
 
