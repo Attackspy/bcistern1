@@ -11,4 +11,7 @@ import java.util.Optional;
 public interface ReviewRepository extends JpaRepository<Review, ReviewKey> {
     @Query("select r.rating from Review r where r.course.id = ?1")
     Optional<List<Integer>> getRatings(Long cid);
+
+    @Query("select r from  Review r where r.course.id =?1")
+    Optional<List<Review>> getComment(Long cid);
 }
