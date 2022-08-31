@@ -5,8 +5,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @Data
 @Entity
@@ -29,8 +29,9 @@ public class Course {
     private double price;
     private boolean is_active;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "course")
-    Set<Inventory> inv;
+    List<Inventory> inv;
 
     public Course(Long id, String name, Long ownerId, double price, boolean isActive) {
         this.id = id;
@@ -38,6 +39,7 @@ public class Course {
         this.owner_id = owner_id;
         this.price = price;
         this.is_active = is_active;
+        this.inv= new ArrayList<>();
     }
 
     public Course(String name, Long ownerId, double price, boolean isActive) {
@@ -45,5 +47,6 @@ public class Course {
         this.owner_id = owner_id;
         this.price = price;
         this.is_active = is_active;
+        this.inv = new ArrayList<>();
     }
 }

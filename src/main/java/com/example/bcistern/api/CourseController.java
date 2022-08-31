@@ -5,6 +5,7 @@ import com.example.bcistern.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -16,8 +17,8 @@ public class CourseController {
     public CourseController(CourseService courseService){this.courseService = courseService;}
 
     @GetMapping
-    public String showCourse(){
-        return courseService.showCourse().toString();
+    public List<Course> showCourse(){
+        return courseService.showCourse();
     }
 
     @PostMapping
@@ -29,16 +30,16 @@ public class CourseController {
     public void deleteCourse(@RequestBody Long id) { courseService.deleteCourse(id);}
 
     @RequestMapping(value = "activate", method = RequestMethod.PUT)
-    public String courseActivate(@RequestBody Long id) {
+    public Optional<Course> courseActivate(@RequestBody Long id) {
         Optional<Course> course = courseService.findcourse(id);
         courseService.activateCourse(id);
-        return course + "!!";
+        return course;
     }
 
     @RequestMapping(value = "deactivate", method = RequestMethod.PUT)
-    public String courseDeactivate(@RequestBody Long id) {
+    public Optional<Course> courseDeactivate(@RequestBody Long id) {
         Optional<Course> course = courseService.findcourse(id);
         courseService.deactivateCourse(id);
-        return course + "!!";
+        return course;
     }
 }

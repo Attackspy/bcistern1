@@ -16,9 +16,9 @@ public class ReviewController {
     }
 
     @PostMapping
-    public String sendComment(@RequestBody Review review){
+    public Review sendComment(@RequestBody Review review){
         reviewService.makeComment(review);
-        return review.getComment();
+        return review;
     }
 
     @RequestMapping(value = "average", method = RequestMethod.GET)

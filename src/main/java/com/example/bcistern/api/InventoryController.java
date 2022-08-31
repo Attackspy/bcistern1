@@ -7,6 +7,7 @@ import com.example.bcistern.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RequestMapping(path = "api/v1/buy")
@@ -54,8 +55,8 @@ public class InventoryController {
         return String.valueOf(inventoryService.showUserInventory(uid));
     }
 
-    @RequestMapping(value = "get_course_owners", method = RequestMethod.GET)
-    public String getCourseOwners(@RequestBody Long cid){
-        return String.valueOf(inventoryService.showCourseOwners(cid));
+    @GetMapping(value = "get_course_owners")
+    public List<Inventory> getCourseOwners(@RequestBody Long cid){
+        return inventoryService.showCourseOwners(cid);
     }
 }

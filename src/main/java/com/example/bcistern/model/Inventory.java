@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Table
 @Entity
+@ToString
 public class Inventory {
 
     @EmbeddedId

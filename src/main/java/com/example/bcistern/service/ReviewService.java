@@ -3,7 +3,6 @@ package com.example.bcistern.service;
 import com.example.bcistern.dao.ReviewRepository;
 import com.example.bcistern.model.Review;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;

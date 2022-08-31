@@ -1,12 +1,9 @@
 package com.example.bcistern.service;
 
 import com.example.bcistern.dao.InventoryRepository;
-import com.example.bcistern.dao.UserRepository;
 import com.example.bcistern.model.Inventory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -34,7 +31,7 @@ public class InventoryService {
         return inventoryRepository.FindThatInv(uid, cid);
     }
 
-    public Optional<List<Inventory>> showCourseOwners(Long cid){
+    public List<Inventory> showCourseOwners(Long cid){
         return inventoryRepository.findInvByCourse(cid);
     }
 

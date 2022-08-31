@@ -2,7 +2,6 @@ package com.example.bcistern.service;
 
 import com.example.bcistern.dao.CourseRepository;
 import com.example.bcistern.model.Course;
-import com.example.bcistern.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;

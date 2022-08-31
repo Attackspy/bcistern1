@@ -6,7 +6,6 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -31,6 +30,7 @@ public class User {
 
     private LocalDateTime last_login;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "user")
     List<Inventory> inv;
 
@@ -49,7 +49,7 @@ public class User {
         this.email = email;
         this.password = password;
         this.money = money;
-        this.inv = inv;
+        this.inv = new ArrayList<>();
     }
 
     public void addToList(Inventory inventory){
