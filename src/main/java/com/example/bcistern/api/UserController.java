@@ -6,6 +6,7 @@ import com.example.bcistern.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RequestMapping(path = "api/v1/user")
@@ -20,8 +21,8 @@ public class UserController {
     }
 
     @GetMapping
-    public String showStudent(){
-        return userService.showStudent().toString();
+    public List<User> showStudent(){
+        return userService.showStudent();
     }
 
     //@PostMapping
@@ -31,10 +32,10 @@ public class UserController {
     public void deleteUser(@RequestBody Long id) {userService.deleteUser(id);}
 
     @RequestMapping(value = "{id}", method = RequestMethod.GET)
-    public String getStudent(@RequestBody Long id){return userService.findStudentById(id).toString();}
+    public Optional<User> getStudent(@RequestBody Long id){return userService.findStudentById(id);}
 
     @RequestMapping(value = "find/{email}", method = RequestMethod.GET)
-    public String getStudentmail(@RequestBody String email){return userService.findStudentByEmail(email).toString();}
+    public Optional<User> getStudentmail(@RequestBody String email){return userService.findStudentByEmail(email);}
 
     @PostMapping
     public String userRegister(@RequestBody User user) {
@@ -48,10 +49,10 @@ public class UserController {
     }
 
     @RequestMapping(value = "login_old", method = RequestMethod.PUT)
-    public String userLogin(@RequestBody String mail){
+    public User userLogin(@RequestBody String mail){
         Optional<User> user = userService.findStudentByEmail(mail);
         userService.userLogin(mail);
-        return user.toString() + "login successful";
+        return user.get();
     }
 
     @RequestMapping(value = "money", method = RequestMethod.PUT)
