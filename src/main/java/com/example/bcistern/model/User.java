@@ -2,9 +2,9 @@ package com.example.bcistern.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
+//import org.springframework.security.core.GrantedAuthority;
+//import org.springframework.security.core.authority.SimpleGrantedAuthority;
+//import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -17,7 +17,8 @@ import java.util.List;
 @NoArgsConstructor
 @Entity(name = "User")
 @Table
-public class User implements UserDetails {
+public class User //implements UserDetails
+        {
     @Id
     @SequenceGenerator(
             name = "user_sequence",
@@ -66,7 +67,7 @@ public class User implements UserDetails {
     public void addToList(Inventory inventory){
         inv.add(inventory);
     }
-
+    /*
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         SimpleGrantedAuthority authority = new SimpleGrantedAuthority(appUserRole.name());
@@ -98,4 +99,5 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return enabled;
     }
+     */
 }
