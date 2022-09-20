@@ -50,9 +50,9 @@ public class InventoryController {
         else {return "course or user not found";}
     }
 
-    @RequestMapping(value = "get", method = RequestMethod.GET)
-    public String getUserInventory(@RequestBody Long uid){
-        return String.valueOf(inventoryService.showUserInventory(uid));
+    @RequestMapping(value = "get/{uid}", method = RequestMethod.GET)
+    public Optional<List<Inventory>> getUserInventory(@PathVariable Long uid){
+        return inventoryService.showUserInventory(uid);
     }
 
     @GetMapping(value = "get_course_owners")

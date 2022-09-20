@@ -32,7 +32,7 @@ public class UserController {
     public void deleteUser(@RequestBody Long id) {userService.deleteUser(id);}
 
     @RequestMapping(value = "{id}", method = RequestMethod.GET)
-    public Optional<User> getStudent(@RequestBody Long id){return userService.findStudentById(id);}
+    public Optional<User> getStudent(@PathVariable Long id){return userService.findStudentById(id);}
 
     @RequestMapping(value = "find/{email}", method = RequestMethod.GET)
     public Optional<User> getStudentmail(@RequestBody String email){return userService.findStudentByEmail(email);}
