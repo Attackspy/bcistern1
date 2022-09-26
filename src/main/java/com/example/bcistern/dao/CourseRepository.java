@@ -19,4 +19,8 @@ public interface CourseRepository extends JpaRepository<Course, Long> {
     @Modifying
     @Query("update Course c set c.is_active = 0 where c.id = ?1")
     void deactivateCourse(long id);
+
+    @Modifying
+    @Query("update Course c set c.rating = ?2 where c.id = ?1")
+    void updateRating(Long id, double average);
 }

@@ -29,6 +29,8 @@ public class Course {
     private double price;
     private boolean is_active;
 
+    private double rating;
+
     @JsonIgnore
     @OneToMany(mappedBy = "course")
     List<Inventory> inv;
@@ -48,5 +50,9 @@ public class Course {
         this.price = price;
         this.is_active = is_active;
         this.inv = new ArrayList<>();
+    }
+
+    public double getRating() {
+        return rating;
     }
 }

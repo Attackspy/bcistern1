@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,7 +22,10 @@ public class CourseService {
     }
 
     public List<Course> showCourse(){
-        return courseRepository.findAll();
+        List<Course> liste = courseRepository.findAll();
+        liste.sort(Comparator.comparing(Course::getRating));
+        Collections.reverse(liste);
+        return liste;
     }
 
     public void addNewCourse(@RequestBody Course course) {
